@@ -1,0 +1,7 @@
+{
+  "name": "Letter Ghostwriter Studio",
+  "description": "A calm, grounded AI ghostwriting studio that helps you craft authentic, thoughtful apology letters to family.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
