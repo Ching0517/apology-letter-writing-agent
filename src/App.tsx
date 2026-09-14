@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { ChatMessage, LetterDraft } from './types';
 import { findLatestDrafts, analyzeDiscovery } from './utils/draftParser';
+import { sendChatMessageToGemini } from './services/geminiService';
 import { Header } from './components/Header';
 import { ChatArea } from './components/ChatArea';
 import { DraftsPanel } from './components/DraftsPanel';
@@ -59,26 +60,7 @@ export default function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: nextMessages.map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `Server responded with status ${response.status}`);
-      }
-
-      const data = await response.json();
-      const modelReply = data.reply;
+      const modelReply = await sendChatMessageToGemini(nextMessages);
 
       const modelMsg: ChatMessage = {
         id: `msg-model-${Date.now()}`,

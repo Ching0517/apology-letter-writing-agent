@@ -156,7 +156,7 @@ export const SystemDiagramModal: React.FC<SystemDiagramModalProps> = ({ isOpen, 
         <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500">
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Server-Side Gemini 3.8 Flash • Privacy Preserved</span>
+            <span>Gemini 3.6 Flash • Interactions API</span>
           </div>
           <button
             onClick={onClose}
